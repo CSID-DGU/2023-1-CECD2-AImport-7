@@ -26,7 +26,7 @@ brick3 = np.array([[None, None, None, None, None, None, None, None],
                    [None, None, None, None, None, None, None, None],
                    [None, None, None, None, None, None, None, None],
                    [None, None, None, None, None, None, None, None],
-                   [None, None, None, None, None, None, None, "red"]])
+                   [None, None, None, None, None, None, None, None]])
 
 class Manual:
     def __init__(self, brick):
@@ -95,7 +95,7 @@ class Manual:
         root = Element("manual")
         if len(manual) == 0:
             info = Element("information")
-            info.set = ("warning", "Manual is empty!")
+            info.set("Warning", "Manual is empty!")
             root.append(info)
         else:
             for i, instruction in enumerate(manual):
@@ -117,7 +117,7 @@ class Manual:
 
     def saveTomxl(self, manual):
         manual_tree = self.manualTotree(manual)
-        with open(r"C:\Users\kocan\OneDrive - dongguk.edu\컴공\컴퓨터공학종합설계1\manual.xml", "wb") as file:
+        with open(r"C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.xml", "wb") as file:
             manual_tree.write(file, encoding='utf-8', xml_declaration=True)
 
 m = Manual(brick2)
