@@ -1,0 +1,190 @@
+{
+	"Manual": [
+		{
+			"Sequence": 1,
+			"Position": "[(0, 0), (0, 1)]",
+			"Color": "white",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 2,
+			"Position": "[(0, 3)]",
+			"Color": "white",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 3,
+			"Position": "[(0, 4), (0, 5)]",
+			"Color": "brown",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 4,
+			"Position": "[(0, 6)]",
+			"Color": "white",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 5,
+			"Position": "[(0, 7)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 6,
+			"Position": "[(1, 0), (1, 1), (1, 2), (1, 3)]",
+			"Color": "white",
+			"Size": "4 * 1"
+		},
+		{
+			"Sequence": 7,
+			"Position": "[(1, 4), (1, 5)]",
+			"Color": "brown",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 8,
+			"Position": "[(1, 6)]",
+			"Color": "white",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 9,
+			"Position": "[(2, 0), (2, 1)]",
+			"Color": "white",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 10,
+			"Position": "[(2, 2), (2, 3), (2, 4), (2, 5)]",
+			"Color": "brown",
+			"Size": "4 * 1"
+		},
+		{
+			"Sequence": 11,
+			"Position": "[(2, 6), (2, 7)]",
+			"Color": "brown",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 12,
+			"Position": "[(3, 0), (3, 1)]",
+			"Color": "white",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 13,
+			"Position": "[(3, 3), (3, 4), (3, 5)]",
+			"Color": "brown",
+			"Size": "3 * 1"
+		},
+		{
+			"Sequence": 14,
+			"Position": "[(3, 7)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 15,
+			"Position": "[(4, 0)]",
+			"Color": "white",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 16,
+			"Position": "[(4, 1), (4, 2), (4, 3)]",
+			"Color": "brown",
+			"Size": "3 * 1"
+		},
+		{
+			"Sequence": 17,
+			"Position": "[(4, 5), (4, 6), (4, 7)]",
+			"Color": "brown",
+			"Size": "3 * 1"
+		},
+		{
+			"Sequence": 18,
+			"Position": "[(5, 1), (5, 2), (5, 3), (5, 4)]",
+			"Color": "brown",
+			"Size": "4 * 1"
+		},
+		{
+			"Sequence": 19,
+			"Position": "[(5, 5), (5, 6)]",
+			"Color": "white",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 20,
+			"Position": "[(5, 7)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 21,
+			"Position": "[(6, 0)]",
+			"Color": "white",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 22,
+			"Position": "[(6, 1)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 23,
+			"Position": "[(6, 2)]",
+			"Color": "black",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 24,
+			"Position": "[(6, 3)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 25,
+			"Position": "[(6, 4), (6, 5), (6, 6)]",
+			"Color": "white",
+			"Size": "3 * 1"
+		},
+		{
+			"Sequence": 26,
+			"Position": "[(6, 7)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 27,
+			"Position": "[(7, 0)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 28,
+			"Position": "[(7, 1)]",
+			"Color": "black",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 29,
+			"Position": "[(7, 4), (7, 5)]",
+			"Color": "black",
+			"Size": "2 * 1"
+		},
+		{
+			"Sequence": 30,
+			"Position": "[(7, 6)]",
+			"Color": "brown",
+			"Size": "1 * 1"
+		},
+		{
+			"Sequence": 31,
+			"Position": "[(7, 7)]",
+			"Color": "white",
+			"Size": "1 * 1"
+		}
+	]
+}
