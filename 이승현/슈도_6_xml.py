@@ -1,5 +1,5 @@
 import numpy as np
-import json
+from xml.etree.ElementTree import Element, SubElement, ElementTree, parse
 
 brick = np.array([['white', 'white', 'white', 'white', 'brown', 'brown', 'white', 'brown'],
                  ['white', 'white', 'white', 'white', 'brown', 'brown', 'white', 'brown'],
@@ -91,28 +91,33 @@ class Manual:
 
         return manual
 
-    def manualTodict(self, manual):
-        instruction__list = list()
+    def manualTotree(self, manual):
+        root = Element("manual")
         if len(manual) == 0:
-            info_list = list()
-            info_list.append(("Warning", "Manual is empty!"))
-            info_dict = dict(info_list)
-            instruction__list.append(info_dict)
+            info = Element("information")
+            info.set("Warning", "Manual is empty!")
+            root.append(info)
         else:
             for i, instruction in enumerate(manual):
-                instruction_tuple = list()
-                instruction_tuple.append(("Sequence", i + 1))
-                instruction_tuple.append(("Position", str(instruction[0])))
-                instruction_tuple.append(("Color", instruction[1]))
-                instruction_tuple.append(("Size", str(instruction[2]) + " * 1"))
-                instruction_dict = dict(instruction_tuple)
-                instruction__list.append(instruction_dict)
-        manual_dict = {"Manual": instruction__list}
-        return manual_dict
+                inst = Element("instruction")
+                inst.set("Sequence", str(i + 1))
+                root.append(inst)
 
-    def jsonToldraw(self):
-        with open(r'C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.json', 'r') as json_data:
-            data = json.load(json_data)
+                instruction_position = SubElement(inst, "Position")
+                instruction_position.text = str(instruction[0])
+
+                instruction_color = SubElement(inst, "Color")
+                instruction_color.text = str(instruction[1])
+
+                instruction_size = SubElement(inst, "Size")
+                instruction_size.text = str(instruction[2]) + " * 1"
+
+        tree = ElementTree(root)
+        return tree
+    def xmlToldraw(self):
+        tree = parse(r"C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.xml")
+        root = tree.getroot()
+        instructions = root.findall("instruction")
         ldraw_file_content = "0 ROTATION CENTER 0 0 0 1 \"Custom\"" + "\n"
         ldraw_file_content += "0 ROTATION CONFIG 0 0" + "\n"
         brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
@@ -120,31 +125,26 @@ class Manual:
         offset = [0, 10, 20, 30, 40]
         start_row = 0
         start_col = 0
-        for entry in data["Manual"]:
-            if entry.get("Warning") :
-                ldraw_file_content += "Manual is empty!"
-                break
+        for inst in instructions:
             ldraw_file_content += "0 STEP" + "\n"
-            part_size = entry["Size"].split(" * ")
+            part_size = inst.findtext("Size").split(" * ")
             part_size = int(float(part_size[0]))
-            positions = eval(entry["Position"])
-            row, col = positions[0]
+            positions = inst.findtext("Position")
+            row, col = int(positions[2]), int(positions[5])
             part_definition = f"1 0 0 0 1 0 0 0 1 {brick[part_size]}"
-            brick_color = entry["Color"]
+            brick_color = inst.findtext("Color")
             ldraw_command = f"1 {color[brick_color]} {start_col + col * 20 + offset[part_size]} 0 {start_row + row * 20} {part_definition}"               
             ldraw_file_content += ldraw_command + "\n"
         return ldraw_file_content
     
-    def saveTojson(self, manual):
-        manual_dict = self.manualTodict(manual)
-        with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.json', 'w', encoding='utf-8') as f:
-            json.dump(manual_dict, f, indent="\t")
+    def saveTomxl(self, manual):
+        manual_tree = self.manualTotree(manual)
+        with open(r"C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.xml", "wb") as file:
+            manual_tree.write(file, encoding='utf-8', xml_declaration=True)
 
     def saveLdr(self, ldraw_file_content):
         with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
             f.write(ldraw_file_content.encode('utf-8'))
-
-m = Manual(brick2)
-m.saveTojson(m.generate())
-m.saveToldr(m.jsonToldraw())
-
+m = Manual(brick)
+m.saveTomxl(m.generate())
+m.saveLdr(m.xmlToldraw())
