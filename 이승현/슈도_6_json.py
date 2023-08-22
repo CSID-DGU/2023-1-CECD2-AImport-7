@@ -137,11 +137,11 @@ class Manual:
     
     def saveTojson(self, manual):
         manual_dict = self.manualTodict(manual)
-        with open(r'C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.json', 'w', encoding='utf-8') as f:
+        with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.json', 'w', encoding='utf-8') as f:
             json.dump(manual_dict, f, indent="\t")
 
     def saveLdr(self, ldraw_file_content):
-        with open(r'C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
+        with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
             f.write(ldraw_file_content.encode('utf-8'))
 
 m = Manual(brick2)
