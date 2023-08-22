@@ -140,7 +140,7 @@ class Manual:
         with open(r'C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.json', 'w', encoding='utf-8') as f:
             json.dump(manual_dict, f, indent="\t")
 
-    def saveToldr(self, ldraw_file_content):
+    def saveLdr(self, ldraw_file_content):
         with open(r'C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
             f.write(ldraw_file_content.encode('utf-8'))
 
