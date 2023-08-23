@@ -8,7 +8,15 @@ brick = np.array([['white', 'white', 'white', 'white', 'brown', 'brown', 'white'
                  ['white', 'brown', 'brown', 'brown', 'brown', 'brown', 'brown', 'brown'],
                  ['white', 'brown', 'brown', 'brown', 'brown', 'white', 'white', 'brown'],
                  ['white', 'brown', 'black', 'brown', 'white', 'white', 'white', 'brown'],
-                 ['brown', 'black', 'white', 'white', 'black', 'black', 'brown', 'white']])
+                 ['brown', 'black', 'white', 'white', 'black', 'black', 'brown', 'white'],
+                 ['white', 'white', None, 'white', 'brown', 'brown', 'white', 'brown'],
+                 ['white', 'white', 'white', 'white', 'brown', 'brown', 'white', None],
+                 ['white', 'white', 'brown', 'brown', 'brown', 'brown', 'brown', 'brown'],
+                 ['white', 'white', None, 'brown', 'brown', 'brown', None, 'brown'],
+                 ['white', 'brown', 'brown', 'brown', None, 'brown', 'brown', 'brown'],
+                 [None, 'brown', 'brown', 'brown', 'brown', 'white', 'white', 'brown'],
+                 ['white', 'brown', 'black', 'brown', 'white', 'white', 'white', 'brown'],
+                 ['brown', 'black', None, None, 'black', 'black', 'brown', 'white']])
 
 brick2 = np.array([['white', 'white', None, 'white', 'brown', 'brown', 'white', 'brown'],
                  ['white', 'white', 'white', 'white', 'brown', 'brown', 'white', None],
@@ -111,7 +119,7 @@ class Manual:
         return manual_dict
 
     def jsonToldraw(self):
-        with open(r'C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.json', 'r') as json_data:
+        with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.json', 'r') as json_data:
             data = json.load(json_data)
         ldraw_file_content = "0 ROTATION CENTER 0 0 0 1 \"Custom\"" + "\n"
         ldraw_file_content += "0 ROTATION CONFIG 0 0" + "\n"
@@ -144,7 +152,7 @@ class Manual:
         with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
             f.write(ldraw_file_content.encode('utf-8'))
 
-m = Manual(brick2)
+m = Manual(brick)
 m.saveTojson(m.generate())
-m.saveToldr(m.jsonToldraw())
+m.saveLdr(m.jsonToldraw())
 
