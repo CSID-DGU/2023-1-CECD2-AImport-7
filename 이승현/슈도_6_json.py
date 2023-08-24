@@ -126,11 +126,8 @@ class Manual:
         brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
         color = {"black" : 0, "brown" : 6, "white" : 15}
         offset = [0, 10, 20, 30, 40]
-        start_row = 0
-        start_col = 0
         for entry in data["Manual"]:
             if entry.get("Warning") :
-                ldraw_file_content += "Manual is empty!"
                 break
             ldraw_file_content += "0 STEP" + "\n"
             part_size = entry["Size"].split(" * ")
@@ -139,7 +136,7 @@ class Manual:
             row, col = positions[0]
             part_definition = f"1 0 0 0 1 0 0 0 1 {brick[part_size]}"
             brick_color = entry["Color"]
-            ldraw_command = f"1 {color[brick_color]} {start_col + col * 20 + offset[part_size]} 0 {start_row + row * 20} {part_definition}"               
+            ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 20} {part_definition}"               
             ldraw_file_content += ldraw_command + "\n"
         return ldraw_file_content
     
