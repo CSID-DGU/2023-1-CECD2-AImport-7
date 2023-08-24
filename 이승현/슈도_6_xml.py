@@ -1,5 +1,6 @@
 import numpy as np
 from xml.etree.ElementTree import Element, SubElement, ElementTree, parse
+import re
 
 brick = np.array([['white', 'white', 'white', 'white', 'brown', 'brown', 'white', 'brown'],
                  ['white', 'white', 'white', 'white', 'brown', 'brown', 'white', 'brown'],
@@ -8,7 +9,15 @@ brick = np.array([['white', 'white', 'white', 'white', 'brown', 'brown', 'white'
                  ['white', 'brown', 'brown', 'brown', 'brown', 'brown', 'brown', 'brown'],
                  ['white', 'brown', 'brown', 'brown', 'brown', 'white', 'white', 'brown'],
                  ['white', 'brown', 'black', 'brown', 'white', 'white', 'white', 'brown'],
-                 ['brown', 'black', 'white', 'white', 'black', 'black', 'brown', 'white']])
+                 ['brown', 'black', 'white', 'white', 'black', 'black', 'brown', 'white'],
+                 ['white', 'white', None, 'white', 'brown', 'brown', 'white', 'brown'],
+                 ['white', 'white', 'white', 'white', 'brown', 'brown', 'white', None],
+                 ['white', 'white', 'brown', 'brown', 'brown', 'brown', 'brown', 'brown'],
+                 ['white', 'white', None, 'brown', 'brown', 'brown', None, 'brown'],
+                 ['white', 'brown', 'brown', 'brown', None, 'brown', 'brown', 'brown'],
+                 [None, 'brown', 'brown', 'brown', 'brown', 'white', 'white', 'brown'],
+                 ['white', 'brown', 'black', 'brown', 'white', 'white', 'white', 'brown'],
+                 ['brown', 'black', None, None, 'black', 'black', 'brown', 'white']])
 
 brick2 = np.array([['white', 'white', None, 'white', 'brown', 'brown', 'white', 'brown'],
                  ['white', 'white', 'white', 'white', 'brown', 'brown', 'white', None],
@@ -115,7 +124,7 @@ class Manual:
         tree = ElementTree(root)
         return tree
     def xmlToldraw(self):
-        tree = parse(r"C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.xml")
+        tree = parse(r"C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.xml")
         root = tree.getroot()
         instructions = root.findall("instruction")
         ldraw_file_content = "0 ROTATION CENTER 0 0 0 1 \"Custom\"" + "\n"
@@ -123,17 +132,17 @@ class Manual:
         brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
         color = {"black" : 0, "brown" : 6, "white" : 15}
         offset = [0, 10, 20, 30, 40]
-        start_row = 0
-        start_col = 0
         for inst in instructions:
             ldraw_file_content += "0 STEP" + "\n"
             part_size = inst.findtext("Size").split(" * ")
             part_size = int(float(part_size[0]))
-            positions = inst.findtext("Position")
-            row, col = int(positions[2]), int(positions[5])
+            positions = inst.findtext("Position")            
+            positions = re.sub(r"[^\d\s]", "", positions)
+            positions = positions.split(" ")
+            row, col = int(positions[0]), int(positions[1])
             part_definition = f"1 0 0 0 1 0 0 0 1 {brick[part_size]}"
             brick_color = inst.findtext("Color")
-            ldraw_command = f"1 {color[brick_color]} {start_col + col * 20 + offset[part_size]} 0 {start_row + row * 20} {part_definition}"               
+            ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 20} {part_definition}"               
             ldraw_file_content += ldraw_command + "\n"
         return ldraw_file_content
     
