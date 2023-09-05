@@ -21,7 +21,7 @@
     - mim install mmengine
     - mim isntall "mmcv>=2.0.0"
 
-2. MMSegmentaion GitHub Repo(https://github.com/open-mmlab/mmsegmentation)에서 git clone하여 local에 설치
+2. MMSegmentaion GitHub Repo(https://github.com/open-mmlab/mmsegmentation) 에서 git clone하여 local에 설치
     - git clone -b main https://github.com/open-mmlab/mmsegmentation.git
     - cd mmsegmentation
     - pip install -v -e .
