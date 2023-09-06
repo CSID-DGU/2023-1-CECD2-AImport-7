@@ -118,7 +118,7 @@ class Manual:
         return ldraw_file_content
 
     def saveLdr(self, ldraw_file_content):
-        with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
+        with open(r'C:\Users\kocan\Desktop\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
             f.write(ldraw_file_content.encode('utf-8'))
 
 m = Manual(brick)
