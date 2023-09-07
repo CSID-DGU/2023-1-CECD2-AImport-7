@@ -100,8 +100,8 @@ class Manual:
         return manual
 
     def listToldraw(self, manual):
-        ldraw_file_content = "0 ROTATION CENTER 0 0 0 1 \"Custom\"" + "\n"
-        ldraw_file_content += "0 ROTATION CONFIG 0 0" + "\n"
+        ldraw_file_content = "0 Name: manual.ldr" + "\n"
+        ldraw_file_content += "0 Author: AImport" + "\n"
         brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
         color = {"black" : 0, "brown" : 6, "white" : 15}
         offset = [0, 10, 20, 30, 40]
