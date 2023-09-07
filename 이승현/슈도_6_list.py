@@ -100,8 +100,8 @@ class Manual:
         return manual
 
     def listToldraw(self, manual):
-        ldraw_file_content = "0 ROTATION CENTER 0 0 0 1 \"Custom\"" + "\n"
-        ldraw_file_content += "0 ROTATION CONFIG 0 0" + "\n"
+        ldraw_file_content = "0 Name: manual.ldr" + "\n"
+        ldraw_file_content += "0 Author: AImport" + "\n"
         brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
         color = {"black" : 0, "brown" : 6, "white" : 15}
         offset = [0, 10, 20, 30, 40]
@@ -118,7 +118,7 @@ class Manual:
         return ldraw_file_content
 
     def saveLdr(self, ldraw_file_content):
-        with open(r'C:\Users\kocan\OneDrive\바탕 화면\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
+        with open(r'C:\Users\kocan\Desktop\2023-1-CECD2-AImport-7\이승현\manual.ldr', 'wb') as f:
             f.write(ldraw_file_content.encode('utf-8'))
 
 m = Manual(brick)
