@@ -80,7 +80,7 @@ class Manual:
 
     def saveTojson(self, manual):
         manual_dict = self.manualTodict(manual)
-        with open(r'C:\Users\kocan\OneDrive - dongguk.edu\컴공\컴퓨터공학종합설계1\manual.json', 'w', encoding='utf-8') as f:
+        with open(r'C:\Users\kocan\Desktop\2023-1-CECD2-AImport-7\이승현\manual.json', 'w', encoding='utf-8') as f:
             json.dump(manual_dict, f, indent="\t")
 
 m = Manual(brick)
