@@ -117,8 +117,8 @@ class Manual:
 
     def saveTomxl(self, manual):
         manual_tree = self.manualTotree(manual)
-        with open(r"C:\Users\kocan\OneDrive\바탕 화면\종설\2023-1-CECD2-AImport-7\이승현\manual.xml", "wb") as file:
+        with open(r"C:\Users\kocan\Desktop\2023-1-CECD2-AImport-7\이승현\manual.xml", "wb") as file:
             manual_tree.write(file, encoding='utf-8', xml_declaration=True)
 
-m = Manual(brick2)
+m = Manual(brick)
 m.saveTomxl(m.generate())
