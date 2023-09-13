@@ -1,1 +1,0 @@
-lpub3d24 -pe -o pdf -od /home/kocan -of manual2.pdf manual.ldr
