@@ -15,3 +15,7 @@ def xmlTomanual(xml_dir, save_ldraw_dir, save_ldraw_name, save_manual_dir, save_
     ldraw_content = print_LDR.xmlToldraw(xml_dir, save_ldraw_name)
     ldr_dir = print_LDR.saveLdr(ldraw_content, save_ldraw_dir, save_ldraw_name)
     convert.Save_manual(save_manual_form, save_manual_dir, save_manual_name, ldr_dir)
+    
+def make_manual(input_form, input_dir, save_ldraw_dir, save_ldraw_name, save_manual_dir, save_manual_form, save_manual_name):
+    ldr_absdir = print_LDR.saveLdr(print_LDR.convertToldr(input_form, input_dir, save_ldraw_name), save_ldraw_dir, save_ldraw_name)
+    convert.Save_manual(save_manual_form, save_manual_dir, save_manual_name, ldr_absdir)
