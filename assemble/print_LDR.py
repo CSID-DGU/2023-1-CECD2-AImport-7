@@ -62,7 +62,8 @@ def convertToldr(input_form, input_dir, name):
     name += '.ldr'
     ldraw_file_content = f"0 Name: {name}\n"
     ldraw_file_content += "0 Author: AImport\n"
-    ldraw_file_content += "0 !LPUB ASSEM CAMERA_ANGLES 45.0   0.0\n"
+    latitude, longitude = 45.0, 20.0
+    ldraw_file_content += f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"
     if input_form == 'json' or input_form == 'xml':
         input_dir = str(os.getcwd()) + '/' + input_dir
         
