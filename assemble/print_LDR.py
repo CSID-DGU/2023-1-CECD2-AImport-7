@@ -2,7 +2,16 @@ import json, re, os
 from xml.etree.ElementTree import parse
 
 brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
-color = {"black" : 0, "blue" : 1, "green" : 2, "red" : 4, "brown" : 6, "pink" : 13, "yellow" : 14, "white" : 15}
+color = {"black" : 0, 
+         "blue" : 1, 
+         "green" : 2, 
+         "red" : 4,
+         "grey" : 7,  
+         "white" : 15,
+         "purple" : 22,
+         "orange" : 25,
+         "sky_blue" : 232}
+
 offset = [0, 10, 20, 30, 40]
 
 def jsonToldraw(dir):
