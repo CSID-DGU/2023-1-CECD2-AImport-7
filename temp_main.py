@@ -45,3 +45,6 @@ with open(output_path, 'w') as file:
 # Get complete manual as a result
 # ! EDIT: 1. 절대경로명 사용 예정, 2. 저장될 LDraw 이름 -> 오늘 날짜와 생성 시간
 mangen.pixelTomanual(colorMatrix, '/', 'temp', '/', args.output, 'temp')
+
+# ! DEBUG: Git 테스트 용도
+print('Git test')
