@@ -7,13 +7,13 @@
 
 ## Segmentation 사용법 (Linux 기준)
 - 참고 사이트: (https://github.com/open-mmlab/mmsegmentation/blob/main/docs/en/get_started.md)
-- 윈도우의 경우 0~2, 5과정의 경우 conda prompt 사용 추천드립니다.
-- Mac의 경우 아직 테스트를 못했습니다. 확인해주시면 감사하겠습니다!
+- 윈도우의 경우 0~2, 4과정의 경우 Annaconda의 conda prompt 사용을 추천드립니다.
+- Mac의 경우 아직 테스트를 못했습니다. 추후에 확인해주시면 감사하겠습니다!
 
 0. (선택사항) Ananconda 가상환경 설정 (PyTorch)
     - conda create --name openmmlab python=3.8 -y
     - conda activate openmmlab
-    - GPU only: conda install pytorch torchvision -c pytorch
+    - CUDA ver: conda install pytorch torchvision -c pytorch
     - CPU only: conda install pytorch torchvision cpuonly -c pytorch
 
 1. 다음 명령어를 통해 MMCV 설치
@@ -32,4 +32,4 @@
     - (윈도우의 경우) 직접 checkpoints 폴더 생성 및 위의 링크에 직접 들어가 pre-trained 모델 다운로드하여 checkpoints 폴더 안에 옮겨주세요.
 
 4. sementaion.py 실행 (clone한 mmsegmentation 파일 안에서 실행 필요)
-    - python segmentation.py -i (segemtaition 원하는 이미지파일 경로)
+    - python segmentation.py -i put_your_path_to_img.jpg (segmentaition 원하는 이미지파일 경로)
