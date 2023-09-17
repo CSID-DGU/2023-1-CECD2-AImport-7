@@ -7,3 +7,5 @@
   2. curl -fsSL https://download.opensuse.org/repositories/home:trevorsandy/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_trevorsandy.gpg > /dev/null
   3. sudo apt update
   4. sudo apt install lpub3d
+
+  - 자세한 정보는 https://software.opensuse.org//download.html?project=home%3Atrevorsandy&package=lpub3d
