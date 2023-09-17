@@ -10,4 +10,5 @@
   3. sudo apt update
   4. sudo apt install lpub3d
 
-
+- ldraw-parts library와 lpub3d를 어떤 순서로 설치하든 상관없음.
+- 다만, 둘 다 설치해야 정상적으로 매뉴얼을 출력할 수 있음.
