@@ -1,4 +1,5 @@
 from xml.etree.ElementTree import Element, SubElement, ElementTree
+from datetime import datetime
 import os
 
 def manualTotree(manual):
@@ -25,11 +26,12 @@ def manualTotree(manual):
     tree = ElementTree(root)
     return tree
 
-def saveTomxl(manual, dir, name):
+def saveTomxl(manual, dir):
         manual_tree = manualTotree(manual)
-        abs_dir = str(os.getcwd()) + '/' + dir + '/'
-        os.makedirs(abs_dir, exist_ok=True)
-        abs_dir = abs_dir + '/' + name + '.xml'
-        with open(abs_dir, "wb") as file:
+        os.makedirs(dir, exist_ok=True)
+        now = datetime.now()
+        name = now.strftime('%Y-%m-%d %H:%M:%S')
+        dir = dir + '/' + name + '.xml'
+        with open(dir, "wb") as file:
             manual_tree.write(file, encoding='utf-8', xml_declaration=True)
-        return abs_dir
+        return dir

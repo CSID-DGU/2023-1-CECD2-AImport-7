@@ -1,4 +1,5 @@
 import json, os
+from datetime import datetime
 
 def manualTodict(manual):
     instruction__list = list()
@@ -19,12 +20,13 @@ def manualTodict(manual):
     manual_dict = {"Manual": instruction__list}
     return manual_dict
 
-def saveTojson(manual, dir, name):
+def saveTojson(manual, dir):
     manual_dict = manualTodict(manual)
-    abs_dir = str(os.getcwd()) + '/' + dir + '/'
-    os.makedirs(abs_dir, exist_ok=True)
-    abs_dir = abs_dir + '/' + name + '.json'
-    with open(abs_dir, 'w', encoding='utf-8') as f:
+    os.makedirs(dir, exist_ok=True)
+    now = datetime.now()
+    name = now.strftime('%Y-%m-%d %H:%M:%S')
+    dir = dir + '/' + name + '.json'
+    with open(dir, 'w', encoding='utf-8') as f:
         json.dump(manual_dict, f, indent="\t")
         
-    return abs_dir
+    return dir
