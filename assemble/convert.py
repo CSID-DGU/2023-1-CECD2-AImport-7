@@ -1,11 +1,12 @@
-import subprocess
-import os
+import subprocess, os
+from datetime import datetime
    
-def Save_manual(form, dir, name, ldr_file):
-    abs_dir = str(os.getcwd()) + '/' + dir + '/'
-    os.makedirs(abs_dir, exist_ok=True)
-    file_name = abs_dir + name + '.' + form
+def Save_manual(form, dir, ldr_file):
+    os.makedirs(dir, exist_ok=True)
+    now = datetime.now()
+    name = now.strftime('%Y-%m-%d %H:%M:%S')
+    file_name = dir + name + '.' + form
          
-    command = f'lpub3d24 --line-width 3 -o {form} -od {abs_dir} -of {file_name} -pe {ldr_file}'
+    command = f'lpub3d24 --line-width 3 -o {form} -od {dir} -of {file_name} -pe {ldr_file}'
     subprocess.run(command, shell=True)
 

@@ -1,5 +1,6 @@
 import json, re, os
 from xml.etree.ElementTree import parse
+from datetime import datetime
 
 brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
 color = {"black" : 0, 
@@ -67,15 +68,9 @@ def listToldraw(manual):
         ldraw_file_content += ldraw_command + "\n"
     return ldraw_file_content
 
-def convertToldr(input_form, input_dir, name):
-    name += '.ldr'
-    ldraw_file_content = f"0 Name: {name}\n"
-    ldraw_file_content += "0 Author: AImport\n"
+def convertToldr(input_form, input_dir):
     latitude, longitude = 45.0, 20.0
-    ldraw_file_content += f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"
-    if input_form == 'json' or input_form == 'xml':
-        input_dir = str(os.getcwd()) + '/' + input_dir
-        
+    ldraw_file_content = f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"        
     if input_form == 'json':
         ldraw_file_content += jsonToldraw(input_dir)
     elif input_form == 'xml':
@@ -84,11 +79,12 @@ def convertToldr(input_form, input_dir, name):
         ldraw_file_content += listToldraw(input_dir)
     return ldraw_file_content
     
-def saveLdr(ldraw_file_content, dir, name):
-    abs_dir = str(os.getcwd()) + '/' + dir
-    os.makedirs(abs_dir, exist_ok=True)
-    abs_dir = abs_dir + '/' + name + '.ldr'
-    with open(abs_dir, 'wb') as f:
+def saveLdr(ldraw_file_content, dir):
+    os.makedirs(dir, exist_ok=True)
+    now = datetime.now()
+    name = now.strftime('%Y-%m-%d %H:%M:%S')
+    dir = dir + '/' + name + '.ldr'
+    with open(dir, 'wb') as f:
         f.write(ldraw_file_content.encode('utf-8'))        
-    return abs_dir
+    return dir
     
