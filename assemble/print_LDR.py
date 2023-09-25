@@ -7,6 +7,7 @@ color = {"black" : 0,
          "blue" : 1, 
          "green" : 2, 
          "red" : 4,
+         "brown" : 6,
          "grey" : 7,  
          "white" : 15,
          "purple" : 22,
@@ -20,6 +21,8 @@ def jsonToldraw(dir):
         data = json.load(json_data)   
     
     ldraw_file_content = ""
+    latitude, longitude = 45.0, 20.0
+    ldraw_file_content = f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"
     for entry in data["Manual"]:
         if entry.get("Warning") :
             break
@@ -40,6 +43,8 @@ def xmlToldraw(dir):
     instructions = root.findall("instruction")
     
     ldraw_file_content = ""
+    latitude, longitude = 45.0, 20.0
+    ldraw_file_content = f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"
     for inst in instructions:
         ldraw_file_content += "0 STEP" + "\n"
         part_size = inst.findtext("Size").split(" * ")
@@ -56,6 +61,8 @@ def xmlToldraw(dir):
 
 def listToldraw(manual):
     ldraw_file_content = ""
+    latitude, longitude = 45.0, 20.0
+    ldraw_file_content = f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"
     if len(manual) == 0:
         return ldraw_file_content
     for entry in manual:
@@ -82,7 +89,7 @@ def convertToldr(input_form, input_dir):
 def saveLdr(ldraw_file_content, dir):
     os.makedirs(dir, exist_ok=True)
     now = datetime.now()
-    name = now.strftime('%Y-%m-%d %H:%M:%S')
+    name = now.strftime('%Y-%m-%d_%H:%M:%S')
     dir = dir + '/' + name + '.ldr'
     with open(dir, 'wb') as f:
         f.write(ldraw_file_content.encode('utf-8'))        

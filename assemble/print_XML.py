@@ -26,11 +26,11 @@ def manualTotree(manual):
     tree = ElementTree(root)
     return tree
 
-def saveTomxl(manual, dir):
+def saveToxml(manual, dir):
         manual_tree = manualTotree(manual)
         os.makedirs(dir, exist_ok=True)
         now = datetime.now()
-        name = now.strftime('%Y-%m-%d %H:%M:%S')
+        name = now.strftime('%Y-%m-%d_%H:%M:%S')
         dir = dir + '/' + name + '.xml'
         with open(dir, "wb") as file:
             manual_tree.write(file, encoding='utf-8', xml_declaration=True)
