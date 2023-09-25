@@ -24,7 +24,7 @@ def saveTojson(manual, dir):
     manual_dict = manualTodict(manual)
     os.makedirs(dir, exist_ok=True)
     now = datetime.now()
-    name = now.strftime('%Y-%m-%d %H:%M:%S')
+    name = now.strftime('%Y-%m-%d_%H:%M:%S')
     dir = dir + '/' + name + '.json'
     with open(dir, 'w', encoding='utf-8') as f:
         json.dump(manual_dict, f, indent="\t")
