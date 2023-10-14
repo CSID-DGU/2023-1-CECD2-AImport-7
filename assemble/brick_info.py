@@ -1,3 +1,5 @@
+import numpy as np
+
 def manual_append(position, color, size):
     instruction = list()
     position_list = position[:]
@@ -11,7 +13,10 @@ def generate(brick):
     manual = list()
     position = list()
     color = "none"
-    size = 0        
+    size = 0 
+
+    brick = np.flip(brick,axis=0)
+
     for i in range(brick.shape[0]):
         color = "none"
         size = 0

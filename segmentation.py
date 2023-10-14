@@ -21,8 +21,10 @@ def image_segmentation(inputImgPath, configPath, checkpointPath):
 
     if torch.cuda.is_available():
         device = 'cuda'
+        print("CUDA available")
     else:
         device = 'cpu'
+        print("CPU mode runs")
 
     # configPath = './configs/deeplabv3plus/deeplabv3plus_r101-d8_4xb4-20k_voc12aug-512x512.py'
     # checkpointPath = './checkpoints/deeplabv3plus_r101-d8_512x512_20k_voc12aug_20200617_102345-c7ff3d56.pth'
@@ -59,7 +61,8 @@ def image_segmentation(inputImgPath, configPath, checkpointPath):
             
             # EDIT NEEDED!! class 8 disignates a label of 'cat'
             # EDIT NEEDED!! class 7 disignates a label of 'car'
-            if pixelInfo[i][j] != 7:
+            # EDIT NEEDED!! class 15 disignates a label of 'person'
+            if pixelInfo[i][j] != 15:
                 copyImgPNG[i, j, 3] = 0
 
     # return PNG img in numpy type

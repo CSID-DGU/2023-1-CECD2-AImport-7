@@ -3,42 +3,42 @@ from xml.etree.ElementTree import parse
 from datetime import datetime
 
 brick = ["0", "3005.dat", "3004.dat", "3622.dat", "3010.dat"]
-color = {"black" : 0, 
-         "blue" : 1, 
-         "green" : 2, 
-         "red" : 4,
-         "brown" : 6,
-         "grey" : 7,  
-         "white" : 15,
-         "purple" : 22,
-         "orange" : 25,
-         "sky_blue" : 232}
+# color = {"black" : 0, 
+#          "blue" : 1, 
+#          "green" : 2, 
+#          "red" : 4,
+#          "brown" : 6,
+#          "grey" : 7,  
+#          "white" : 15,
+#          "purple" : 22,
+#          "orange" : 25,
+#          "sky_blue" : 232}
 
 color = {
-    'Black': (0, 0, 0),
-    'White': (255, 255, 255),
-    'Red': (205, 0, 0),
-    'Bright_Red': (255, 0, 0),
-    'Green': (0, 153, 0),
-    'Bright_Green': (0, 255, 0),
-    'Blue': (0, 102, 204),
-    'Bright_Blue': (0, 204, 255),
-    'Yellow': (255, 255, 0),
-    'Bright_Yellow': (255, 255, 102),
-    'Orange': (255, 128, 0),
-    'Bright_Orange': (255, 160, 10),
-    'Brown': (128, 64, 0),
-    'Light_Brown': (210, 105, 30),
-    'Tan': (218, 165, 32),
-    'Dark_Tan': (136, 84, 24),
-    'Dark_Grey': (169, 169, 169),
-    'Light_Grey': (211, 211, 211),
-    'Dark_Bluish_Grey': (89, 89, 89),
-    'Light_Bluish_Grey': (155, 155, 155),
-    'Purple': (128, 0, 128),
-    'Pink': (255, 105, 180),
-    'Lime': (50, 205, 50),
-    'Lime_Green': (50, 205, 50),
+    'Black': 0,
+    'White': 15,
+    'Red': 4,
+    'Bright_Red': 324,
+    'Green': 2,
+    'Bright_Green': 10,
+    'Blue': 1,
+    'Bright_Blue': 212,
+    'Yellow': 14,
+    'Bright_Yellow': 226,
+    'Orange': 125,
+    'Bright_Orange': 191,
+    'Brown': 6,
+    'Light_Brown': 86,
+    'Tan': 19,
+    'Dark_Tan': 28,
+    'Dark_Grey': 8,
+    'Light_Grey': 7,
+    'Dark_Bluish_Grey': 72,
+    'Light_Bluish_Grey': 71,
+    'Purple': 22,
+    'Pink': 13,
+    'Lime': 27,
+    'Lime_Green': 120
 }
 
 
@@ -120,6 +120,6 @@ def saveLdr(ldraw_file_content, dir):
     name = now.strftime('%Y-%m-%d_%H:%M:%S')
     dir = dir + '/' + name + '.ldr'
     with open(dir, 'wb') as f:
-        f.write(ldraw_file_content.encode('utf-8'))        
+        f.write(ldraw_file_content.encode('utf-8'))    
     return dir
     
