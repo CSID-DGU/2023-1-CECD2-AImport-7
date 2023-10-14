@@ -1,6 +1,6 @@
 '''
 Initial merge: 2023.09.17 by AImport
-Last merge: 2023.09.17 by AImport
+Last merge: 2023.10.14 by AImport
 '''
 
 from segmentation import image_segmentation # ! EDIT: 폴더명 추후에 변경 필요
@@ -44,4 +44,4 @@ with open(output_path, 'w') as file:
 
 # Get complete manual as a result
 # ! EDIT: 1. 절대경로명 사용 예정, 2. 저장될 LDraw 이름 -> 오늘 날짜와 생성 시간
-mangen.pixelTomanual(colorMatrix, '/home/paralies/output', '/home/paralies/output', args.output)
+mangen.pixelTomanualTomanual(colorMatrix, '/home/paralies/output', '/home/paralies/output', args.output)
