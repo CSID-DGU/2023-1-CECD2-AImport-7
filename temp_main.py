@@ -12,17 +12,17 @@ from PIL import Image
 
 # Set Argument parser
 parser = argparse.ArgumentParser(description='Convert JPEG to PNG and set alpha value for white pixels.')
-parser.add_argument('--input', '-i', type=str, required=True, help='Path to the input image.') 
-parser.add_argument('--config', '-c', default='./configs/deeplabv3plus/deeplabv3plus_r101-d8_4xb4-20k_voc12aug-512x512.py', 
-                    type=str, required=True, help='Path to mmseg python config file') # ! EDIT: Defult dir should be edited...
-parser.add_argument('--check', '-k', defult='./checkpoints/deeplabv3plus_r101-d8_512x512_20k_voc12aug_20200617_102345-c7ff3d56.pth', 
-                    type=str, required=True, help='Path to pre-trained checkpoint model')# ! EDIT: Defult dir should be edited...
+parser.add_argument('--input', '-i', type=str, required=True, help='Path to the input image.')
+parser.add_argument('--config', '-c', default='./mmsegmentation/configs/deeplabv3plus/deeplabv3plus_r101-d8_4xb4-20k_voc12aug-512x512.py', 
+                    type=str, required=False, help='Path to mmseg python config file') # ! EDIT: Defult dir should be edited...
+parser.add_argument('--check', '-k', default='./mmsegmentation/checkpoints/deeplabv3plus_r101-d8_512x512_20k_voc12aug_20200617_102345-c7ff3d56.pth', 
+                    type=str, required=False, help='Path to pre-trained checkpoint model')# ! EDIT: Defult dir should be edited...
 parser.add_argument('--output', '-o', type=str, required=True, help='PDF or PNG') # ! EDIT: Add 'LDraw' later!!
 
 args = parser.parse_args()
 
 # Get segmented image
-segPNG = image_segmentation(args.input, args.config, args.model)
+segPNG = image_segmentation(args.input, args.config, args.check)
 
 # ! DEBUG: Convert numpy into PIL Image 
 imgPNGDone = Image.fromarray(segPNG, 'RGBA')
@@ -44,4 +44,4 @@ with open(output_path, 'w') as file:
 
 # Get complete manual as a result
 # ! EDIT: 1. 절대경로명 사용 예정, 2. 저장될 LDraw 이름 -> 오늘 날짜와 생성 시간
-mangen.pixelTomanual(colorMatrix, '/', 'temp', '/', args.output, 'temp')
+mangen.pixelTomanual(colorMatrix, '~/output/', '~/output/', args.output)

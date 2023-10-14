@@ -58,8 +58,9 @@ def image_segmentation(inputImgPath, configPath, checkpointPath):
         for j in range(pixelInfo.shape[1]):
             
             # EDIT NEEDED!! class 8 disignates a label of 'cat'
-            if pixelInfo[i][j] != 8:
-                copyImgPNG[i, j, 3] = 100
+            # EDIT NEEDED!! class 7 disignates a label of 'car'
+            if pixelInfo[i][j] != 7:
+                copyImgPNG[i, j, 3] = 0
 
     # return PNG img in numpy type
     return copyImgPNG

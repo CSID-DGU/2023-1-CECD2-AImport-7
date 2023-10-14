@@ -14,6 +14,34 @@ color = {"black" : 0,
          "orange" : 25,
          "sky_blue" : 232}
 
+color = {
+    'Black': (0, 0, 0),
+    'White': (255, 255, 255),
+    'Red': (205, 0, 0),
+    'Bright_Red': (255, 0, 0),
+    'Green': (0, 153, 0),
+    'Bright_Green': (0, 255, 0),
+    'Blue': (0, 102, 204),
+    'Bright_Blue': (0, 204, 255),
+    'Yellow': (255, 255, 0),
+    'Bright_Yellow': (255, 255, 102),
+    'Orange': (255, 128, 0),
+    'Bright_Orange': (255, 160, 10),
+    'Brown': (128, 64, 0),
+    'Light_Brown': (210, 105, 30),
+    'Tan': (218, 165, 32),
+    'Dark_Tan': (136, 84, 24),
+    'Dark_Grey': (169, 169, 169),
+    'Light_Grey': (211, 211, 211),
+    'Dark_Bluish_Grey': (89, 89, 89),
+    'Light_Bluish_Grey': (155, 155, 155),
+    'Purple': (128, 0, 128),
+    'Pink': (255, 105, 180),
+    'Lime': (50, 205, 50),
+    'Lime_Green': (50, 205, 50),
+}
+
+
 offset = [0, 10, 20, 30, 40]
 
 def jsonToldraw(dir):

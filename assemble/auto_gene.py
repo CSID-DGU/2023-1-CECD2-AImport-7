@@ -1,4 +1,6 @@
-import brick_info, print_LDR, convert
+import assemble.brick_info as brick_info
+import assemble.print_LDR as print_LDR
+import assemble.convert as convert
 
 def pixelTomanual(brick, save_ldraw_dir, save_manual_dir, save_manual_form):
     instruction = brick_info.generate(brick)
