@@ -39,6 +39,7 @@
   1. sudo apt-get update -y
   2. sudo apt-get install -y ldraw-parts
   3. site : https://library.ldraw.org/updates?latest
+  4. 만약 lpub3d에서 part library를 못 찾는 경우 /usr/share/ldraw로 폴더 지정
      
 ## lpub3d를 ubuntu에서 설치하는 방법(20.04 LTS 기준) ->  https://software.opensuse.org//download.html?project=home%3Atrevorsandy&package=lpub3d  
   1. echo 'deb http://download.opensuse.org/repositories/home:/trevorsandy/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/home:trevorsandy.list
