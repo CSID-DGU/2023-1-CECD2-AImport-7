@@ -2,16 +2,32 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree
 from datetime import datetime
 import os
 
-def manualTotree(manual):
+from brick_info import generate
+
+def manualTotree(manual, height, width):
     root = Element("manual")
+    discount = 0
     if len(manual) == 0:
         info = Element("information")
         info.set("Warning", "Manual is empty!")
         root.append(info)
     else:
+        Height = SubElement(root, "height")
+        Height.text = str(height)
+        
+        Width = SubElement(root, "width")
+        Width.text = str(width)
+        
+        pageSeparate = list()
+
         for i, instruction in enumerate(manual):
+            if instruction[2] == -1:
+                pageSeparate.append(i + 1 - discount)
+                discount = discount + 1
+                continue
+            
             inst = Element("instruction")
-            inst.set("Sequence", str(i + 1))
+            inst.set("Sequence", str(i + 1 - discount))
             root.append(inst)
 
             instruction_position = SubElement(inst, "Position")
@@ -23,15 +39,18 @@ def manualTotree(manual):
             instruction_size = SubElement(inst, "Size")
             instruction_size.text = str(instruction[2]) + " * 1"
 
+    pageSeparator = SubElement(root, "pageSeparate")
+    pageSeparator.text = str(pageSeparate)
     tree = ElementTree(root)
     return tree
 
-def saveToxml(manual, dir):
-        manual_tree = manualTotree(manual)
-        os.makedirs(dir, exist_ok=True)
-        now = datetime.now()
-        name = now.strftime('%Y-%m-%d_%H:%M:%S')
-        dir = dir + '/' + name + '.xml'
-        with open(dir, "wb") as file:
-            manual_tree.write(file, encoding='utf-8', xml_declaration=True)
-        return dir
+def saveToxml(brick, dir):
+    manual, height, width = generate(brick)
+    manual_tree = manualTotree(manual, height, width)
+    os.makedirs(dir, exist_ok=True)
+    now = datetime.now()
+    name = now.strftime('%Y-%m-%d')
+    dir = dir + '/' + name + '.xml'
+    with open(dir, "wb") as file:
+        manual_tree.write(file, encoding='utf-8', xml_declaration=True)
+    return dir
