@@ -63,7 +63,7 @@ def jsonToldraw(dir):
         part_size = int(float(part_size[0]))
         positions = eval(entry["Position"])
         row, col = positions[0]
-        part_definition = f"1 0 0 0 1 0 0 0 1 {brick[part_size]}"
+        part_definition = f"1 0 0 0 0 1 0 -1 0 {brick[part_size]}"
         brick_color = entry["Color"]
         ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 20} {part_definition}"               
         ldraw_file_content += ldraw_command + "\n"
@@ -93,7 +93,7 @@ def xmlToldraw(dir):
         positions = re.sub(r"[^\d\s]", "", positions)
         positions = positions.split(" ")
         row, col = int(positions[0]), int(positions[1])
-        part_definition = f"1 0 0 0 1 0 0 0 1 {brick[part_size]}"
+        part_definition = f"1 0 0 0 0 1 0 -1 0 {brick[part_size]}"
         brick_color = inst.findtext("Color")
         ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 20} {part_definition}"               
         ldraw_file_content += ldraw_command + "\n"
