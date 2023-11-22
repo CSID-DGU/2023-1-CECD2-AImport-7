@@ -1,17 +1,56 @@
 import numpy as np
+from itertools import combinations_with_replacement as combi
+from random import *
+from math import *
 
-def manual_append(position, color, size):
-    instruction = list()
-    position_list = position[:]
-    instruction.append(position_list)
-    instruction.append(color)
-    instruction.append(size)
-    position.clear()
-    return instruction
+def manual_append(manual, position, color, size):
+    
+    if position != (-1, -1):
+        if(size > 4):
+            position_list = splitBlock(assembleBlock(size), position)
+            for position in position_list:
+                instruction = list()
+                instruction.append((position[0], position[1]))
+                instruction.append(color)
+                instruction.append(position[2])
+                manual.append(instruction)
+        else:
+            instruction = list()
+            instruction.append(position)
+            instruction.append(color)
+            instruction.append(size)
+            manual.append(instruction)
+    else:
+        instruction = list()
+        instruction.append(position)
+        instruction.append(color)
+        instruction.append(size)
+        manual.append(instruction)
+
+    return instruction            
+
+def assembleBlock(size):
+    arr = list()
+    start = (int)(ceil(size / 4))
+    end = (int)(ceil(size / 2))
+    divide = randint(start, end)
+    while len(arr) == 0:
+        arr = [list(x) for x in combi(range(1, 4), divide) if sum(x)== size]
+        divide = randint(start, end)
+    return arr
+
+def splitBlock(arr, position):
+    select_combi = randint(0, len(arr) - 1)
+    position_list = list()
+    now_col = position[1]
+    for i in arr[select_combi]:
+        position_list.append((position[0], now_col, i))
+        now_col = now_col + i
+    return position_list
 
 def generate(brick):
     manual = list()
-    position = list()
+    position = tuple()
     color = "none"
     size = 0
     height, width = brick.shape
@@ -26,37 +65,38 @@ def generate(brick):
                 if color == "none":
                     color = brick[i, j]
                     size = 1
-                    position.append((i, j))
+                    position = (i, j)
 
                 elif color == brick[i, j]:
                     size = size + 1
-                    position.append((i, j))
-                        
+
+                    '''   
                     if size >= 4:
                         manual.append(manual_append(position, color, size))
                         if j < brick.shape[1] - 1:
                             color = brick[i][j + 1]
+                            position = (i, j + 1)
                         size = 0
-                    
+                    '''
                 elif color != brick[i, j]:
-                    manual.append(manual_append(position, color, size))                                        
+                    manual_append(manual, position, color, size)                                       
                     color = brick[i, j]
                     size = 1
-                    position.append((i, j))                    
+                    position = (i, j)                    
                        
                 if j == brick.shape[1] - 1 and size > 0:
-                    manual.append(manual_append(position, color, size))
+                    manual_append(manual, position, color, size)
                 
             else:
                 if size > 0:
-                    manual.append(manual_append(position, color, size))
+                    manual_append(manual, position, color, size)
                     color = "none"
                     size = 0
                     
             if j == brick.shape[1] - 1:
-                separator = list()
-                separator.append((-1, -1))
-                manual.append(manual_append(separator, "-1", -1))
+                separator = tuple()
+                separator = (-1, -1)
+                manual_append(manual, separator, "-1", -1)
                 
 
     return manual, height, width

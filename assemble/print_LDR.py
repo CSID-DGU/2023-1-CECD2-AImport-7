@@ -51,7 +51,7 @@ def jsonToldraw(dir):
     pageSeparator = data["PageSeparator"]
 
     ldraw_file_content = ""
-    latitude, longitude = 45.0, 20.0
+    latitude, longitude = 45.0, 0.0
     ldraw_file_content = f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"
     ldraw_file_content += "0 STEP" + "\n"
     for sequence, entry in enumerate(data["Manual"]):
@@ -61,11 +61,11 @@ def jsonToldraw(dir):
             ldraw_file_content += "0 STEP" + "\n"
         part_size = entry["Size"].split(" * ")
         part_size = int(float(part_size[0]))
-        positions = eval(entry["Position"])
-        row, col = positions[0]
+        position = eval(entry["Position"])
+        row, col = position
         part_definition = f"1 0 0 0 0 1 0 -1 0 {brick[part_size]}"
         brick_color = entry["Color"]
-        ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 20} {part_definition}"               
+        ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 24} {part_definition}"               
         ldraw_file_content += ldraw_command + "\n"
     return ldraw_file_content
 
@@ -77,10 +77,9 @@ def xmlToldraw(dir):
     pageSeparator = root.findtext("pageSeparate")
     pageSeparator = re.sub(r"[^\d\s]", "", pageSeparator)
     pageSeparator = pageSeparator.split(" ")
-    print(pageSeparator)
 
     ldraw_file_content = ""
-    latitude, longitude = 45.0, 20.0
+    latitude, longitude = 45.0, 0.0
     ldraw_file_content = f"0 !LPUB ASSEM CAMERA_ANGLES {latitude}   {longitude}\n"
     ldraw_file_content += "0 STEP" + "\n"
     for sequence, inst in enumerate(instructions):
@@ -89,20 +88,20 @@ def xmlToldraw(dir):
         part_size = inst.findtext("Size").split(" * ")
         part_size = int(float(part_size[0]))
         
-        positions = inst.findtext("Position")            
-        positions = re.sub(r"[^\d\s]", "", positions)
-        positions = positions.split(" ")
-        row, col = int(positions[0]), int(positions[1])
+        position = inst.findtext("Position")     
+        position = re.sub(r"[^\d\s]", "", position)
+        position = position.split(" ")
+        row, col = int(position[0]), int(position[1])
         part_definition = f"1 0 0 0 0 1 0 -1 0 {brick[part_size]}"
         brick_color = inst.findtext("Color")
-        ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 20} {part_definition}"               
+        ldraw_command = f"1 {color[brick_color]} {col * 20 + offset[part_size]} 0 {row * 24} {part_definition}"               
         ldraw_file_content += ldraw_command + "\n"
     return ldraw_file_content
 
 def saveLdr(ldraw_file_content, dir):
     os.makedirs(dir, exist_ok=True)
     now = datetime.now()
-    name = now.strftime('%Y-%m-%d')
+    name = now.strftime('%Y-%m-%d_%H:%M:%S')
     dir = dir + '/' + name + '.ldr'
     with open(dir, 'wb') as f:
         f.write(ldraw_file_content.encode('utf-8'))    

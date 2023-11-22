@@ -49,7 +49,7 @@ def saveToxml(brick, dir):
     manual_tree = manualTotree(manual, height, width)
     os.makedirs(dir, exist_ok=True)
     now = datetime.now()
-    name = now.strftime('%Y-%m-%d')
+    name = now.strftime('%Y-%m-%d_%H:%M:%S')
     dir = dir + '/' + name + '.xml'
     with open(dir, "wb") as file:
         manual_tree.write(file, encoding='utf-8', xml_declaration=True)
