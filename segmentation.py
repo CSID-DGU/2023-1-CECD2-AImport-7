@@ -15,14 +15,17 @@ import numpy as np
 import cv2
 from PIL import Image
 
+class_label = {'aero':1, 'bird':3, 'car':7, 'cat':8, 'person':15, 'sheep':17, 'sofa':18}
 
-def image_segmentation(inputImgPath, configPath, checkpointPath): 
+def image_segmentation(inputImgPath, configPath, checkpointPath, label): 
     device = None
 
     if torch.cuda.is_available():
         device = 'cuda'
+        print("CUDA available")
     else:
         device = 'cpu'
+        print("CPU mode runs")
 
     # configPath = './configs/deeplabv3plus/deeplabv3plus_r101-d8_4xb4-20k_voc12aug-512x512.py'
     # checkpointPath = './checkpoints/deeplabv3plus_r101-d8_512x512_20k_voc12aug_20200617_102345-c7ff3d56.pth'
@@ -58,8 +61,11 @@ def image_segmentation(inputImgPath, configPath, checkpointPath):
         for j in range(pixelInfo.shape[1]):
             
             # EDIT NEEDED!! class 8 disignates a label of 'cat'
-            if pixelInfo[i][j] != 8:
-                copyImgPNG[i, j, 3] = 100
+            # EDIT NEEDED!! class 7 disignates a label of 'car'
+            # EDIT NEEDED!! class 15 disignates a label of 'person'
+            
+            if pixelInfo[i][j] != class_label[label]:
+                copyImgPNG[i, j, 3] = 0
 
     # return PNG img in numpy type
     return copyImgPNG
