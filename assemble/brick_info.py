@@ -3,18 +3,33 @@ from itertools import combinations_with_replacement as combi
 from random import *
 from math import *
 
+brick_boundary = dict()
+
+def initBoundary(brick):
+    for colmun in range(brick.shape[1]):
+        row_list = "0" * brick.shape[0]
+        brick_boundary[colmun] = row_list
+
+def calcBoundary(col, row, size):
+    for i in range(0, size):
+        temp = list(brick_boundary[col + i])
+        temp[row] = str(size)
+        brick_boundary[col + i] = ''.join(temp)
+
 def manual_append(manual, position, color, size):
     
     if position != (-1, -1):
         if(size > 4):
             position_list = splitBlock(assembleBlock(size), position)
             for position in position_list:
+                calcBoundary(position[1], position[0], position[2])
                 instruction = list()
                 instruction.append((position[0], position[1]))
                 instruction.append(color)
                 instruction.append(position[2])
                 manual.append(instruction)
         else:
+            calcBoundary(position[1], position[0], size)
             instruction = list()
             instruction.append(position)
             instruction.append(color)
@@ -28,6 +43,39 @@ def manual_append(manual, position, color, size):
         manual.append(instruction)
 
     return instruction            
+
+def checkNotJoin(manual):
+    for key, val in brick_boundary.items():
+        lines = val.split('0')
+        #print(lines)
+        for l in lines:
+            if l != '':
+                sizes = [int(num) for num in l]
+                maxSize = max(sizes)
+                if maxSize == 1:
+                    if val[val.find(l) - 1] != 0:
+                        start = val.find('0' + l)
+                    else:
+                        start = val.find(l)
+                    for row in range(start, start + len(l)):
+                        #print(row, key)
+                        manual_Delete(manual, row, key)
+                    #print(val[start:start+len(l)])
+
+def manual_Delete(manual, row, col):
+    for index in range(0, len(manual)):
+        if manual[index][0] == (row, col):
+            manual.pop(index)
+            break
+
+
+def print_brickBoundary():
+    
+    for key, val in brick_boundary.items():
+        print(key, val)
+    
+    #print(brick_boundary)
+        
 
 def assembleBlock(size):
     arr = list()
@@ -49,6 +97,7 @@ def splitBlock(arr, position):
     return position_list
 
 def generate(brick):
+    initBoundary(brick)
     manual = list()
     position = tuple()
     color = "none"
@@ -97,6 +146,7 @@ def generate(brick):
                 separator = tuple()
                 separator = (-1, -1)
                 manual_append(manual, separator, "-1", -1)
-                
-
+             
+    #print_brickBoundary()
+    #checkNotJoin(manual)
     return manual, height, width

@@ -19,7 +19,7 @@
 1. 다음 명령어를 통해 MMCV 설치
     - pip install -U openmim
     - mim install mmengine
-    - mim isntall "mmcv>=2.0.0"
+    - mim install "mmcv>=2.0.0"
 
 2. MMSegmentaion GitHub Repo(https://github.com/open-mmlab/mmsegmentation) 에서 git clone하여 local에 설치
     - git clone -b main https://github.com/open-mmlab/mmsegmentation.git
@@ -38,12 +38,16 @@
 ## ldraw-parts library를 ubuntu에서 설치하는 방법
   1. sudo apt-get update -y
   2. sudo apt-get install -y ldraw-parts
-
+  3. site : https://library.ldraw.org/updates?latest
+  4. 만약 lpub3d에서 part library를 못 찾는 경우 /usr/share/ldraw로 폴더 지정
+     
 ## lpub3d를 ubuntu에서 설치하는 방법(20.04 LTS 기준) ->  https://software.opensuse.org//download.html?project=home%3Atrevorsandy&package=lpub3d  
   1. echo 'deb http://download.opensuse.org/repositories/home:/trevorsandy/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/home:trevorsandy.list
   2. curl -fsSL https://download.opensuse.org/repositories/home:trevorsandy/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_trevorsandy.gpg > /dev/null
   3. sudo apt update
   4. sudo apt install lpub3d
 
-- ldraw-parts library와 lpub3d를 어떤 순서로 설치하든 상관없음.
-- 다만, 둘 다 설치해야 정상적으로 매뉴얼을 출력할 수 있음.
+- lpub3d -> ldraw-parts library 순으로 설치.
+
+## Requirement.txt 관련
+- 'pip freeze > requirement.txt'
