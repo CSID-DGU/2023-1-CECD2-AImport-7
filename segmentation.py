@@ -15,8 +15,9 @@ import numpy as np
 import cv2
 from PIL import Image
 
+class_label = {'aero':1, 'bird':3, 'car':7, 'cat':8, 'person':15, 'sheep':17, 'sofa':18}
 
-def image_segmentation(inputImgPath, configPath, checkpointPath): 
+def image_segmentation(inputImgPath, configPath, checkpointPath, label): 
     device = None
 
     if torch.cuda.is_available():
@@ -62,7 +63,8 @@ def image_segmentation(inputImgPath, configPath, checkpointPath):
             # EDIT NEEDED!! class 8 disignates a label of 'cat'
             # EDIT NEEDED!! class 7 disignates a label of 'car'
             # EDIT NEEDED!! class 15 disignates a label of 'person'
-            if pixelInfo[i][j] != 15:
+            
+            if pixelInfo[i][j] != class_label[label]:
                 copyImgPNG[i, j, 3] = 0
 
     # return PNG img in numpy type
