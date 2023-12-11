@@ -17,7 +17,7 @@ from PIL import Image
 
 class_label = {'aero':1, 'bird':3, 'car':7, 'cat':8, 'person':15, 'sheep':17, 'sofa':18}
 
-def image_segmentation(inputImgPath, configPath, checkpointPath, label): 
+def image_segmentation(inputImgPath, configPath, checkpointPath, label):
     device = None
 
     if torch.cuda.is_available():
