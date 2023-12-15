@@ -1,6 +1,6 @@
 import json, os
 from datetime import datetime
-from brick_info import generate
+from assemble.brick_info import generate
 
 def manualTodict(manual, height, width):
     instruction__list = list()

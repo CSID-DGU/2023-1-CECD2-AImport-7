@@ -3,16 +3,30 @@ import numpy as np
 
 # 컬러 매칭 테이블 정의 (각 컬러와 RGB 값)
 color_table = {
-    'Black': (0, 0, 0),
+  	'Black': (0, 0, 0),
     'White': (255, 255, 255),
     'Red': (205, 0, 0),
+    'Bright Red': (255, 0, 0),
     'Green': (0, 153, 0),
+    'Bright Green': (0, 255, 0),
     'Blue': (0, 102, 204),
+    'Bright Blue': (0, 204, 255),
     'Yellow': (255, 255, 0),
+    'Bright Yellow': (255, 255, 102),
     'Orange': (255, 128, 0),
+    'Bright Orange': (255, 160, 10),
     'Brown': (128, 64, 0),
+    'Light Brown': (210, 105, 30),
+    'Tan': (218, 165, 32),
+    'Dark Tan': (136, 84, 24),
+    'Dark Grey': (169, 169, 169),
+    'Light Grey': (211, 211, 211),
+    'Dark Bluish Grey': (89, 89, 89),
+    'Light Bluish Grey': (155, 155, 155),
     'Purple': (128, 0, 128),
     'Pink': (255, 105, 180),
+    'Lime': (50, 205, 50),
+    'Lime Green': (50, 205, 50),
 }
 
 def color_extractor(segImg):

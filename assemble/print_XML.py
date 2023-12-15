@@ -2,7 +2,7 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree
 from datetime import datetime
 import os
 
-from brick_info import generate
+from assemble.brick_info import generate
 
 def manualTotree(manual, height, width):
     root = Element("manual")
